@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+@plugin "daisyui" {
+  themes:
+    light --default,
+    dark --prefersdark;
+}
+
+.group-cards {
+  @apply grid;
+}
+
+@media screen and (min-width: 768px) {
+  .group-cards {
+    @apply grid-cols-2;
+  }
+}
+
+@media screen and (min-width: 1105px) {
+  .group-cards {
+    @apply grid-cols-3;
+  }
+}
+
+.fade-list-move,
+.fade-list-enter-active,
+.fade-list-leave-active {
+  @apply transition-all duration-500;
+}
+
+.fade-list-enter-from,
+.fade-list-leave-to {
+  @apply transform opacity-0;
+}
+
+.fade-list-leave-active {
+  @apply absolute;
+}
