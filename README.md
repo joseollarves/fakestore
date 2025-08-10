@@ -1,39 +1,33 @@
-# prueba-tecnica-vue
+# Fake Store - Prueba Tecnica Vue
 
-This template should help get you started developing with Vue 3 in Vite.
+## Instrucciones de instalacion
 
-## Recommended IDE Setup
+1. Tener Node.js y pnpm instalado.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+2. Descargar el proyecto, dentro de la carpeta usar el comando pnpm install.
 
-## Type Support for `.vue` Imports in TS
+3. Una vez instaladas las dependencias ejecutar el comando pnpm dev, al hacerlo en la terminal se mostrara una url local en la cual podra acceder al proyecto desde el navegador.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Decisiones tecnicas relevantes
 
-## Customize configuration
+Ademas de utilizar Vue, las apis de Fakestore y pyDolar, Axios y Tailwind use a su vez otras tecnologias relacionadas a las mismas.
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+En el caso de Vue utilice la libreria conocida como Pinia para el manejo de estados, ademas de usar un plugin conocido como pinia-plugin-persistedstate, para poder almacenar
+estados en localStorage, concretamente lo utilice para guardar la informacion de las apis y que esta persista de forma local sin necesidad de llamar a las apis cada vez que se
+recarga el proyecto o se realiza un cambio.
 
-## Project Setup
+Para Tailwind utilice un plugin llamado DaisyUI para simplificar el proceso de diseñar la interfaz de la tienda, sin perder los beneficios de utilizar Tailwind.
 
-```sh
-pnpm install
-```
+El proyecto contiene varias subcarpetas dentro de la carpeta src, la carpeta components contiene los componentes de la tienda, la mayoria de ellos interactuan entre si
+gracias a los estados de Pinia. 
 
-### Compile and Hot-Reload for Development
+La carpeta services donde defino cada una de las apis (con Axios) en diferentes archivos, en el caso de requerir usarlas se importan esos servicios y se puede llamar a la api y 
+agregar los parametros necesarios a la url.
 
-```sh
-pnpm dev
-```
+La carpeta stores donde se definen los estados de Pinia, en algunos de ellos se llaman a los servicios definidos anteriormente y se guarda la informacion en localStorage.
 
-### Type-Check, Compile and Minify for Production
+Dentro de la carpeta src queda es el archivo styles.css donde importo a Tailwind como parte de su configuracion y declaro el plugin de DaisyUi, en ambos casos para que
+los estilos funcionen de forma global en el proyecto.
 
-```sh
-pnpm build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
-```
+Tambien esta el archivo App.vue donde importo todos los componentes y estados del proyecto y ya en el arhivo main.ts importo App.vue y a su vez importo a Pinia y al plugin de 
+localStorage como parte de su configuracion.
